@@ -14,7 +14,7 @@ resource "aws_instance" "master1" {
   tags = {
     Name = "master1"
   }
-  user_data = <<-EOF
+ user_data = <<-EOF
         #!/bin/bash
             sudo curl https://get.docker.com | bash
             sudo usermod -aG docker ubuntu
@@ -22,7 +22,7 @@ resource "aws_instance" "master1" {
             sudo systemctl daemon-reload
             sudo systemctl restart docker
             sudo reboot
-        EOF
+    EOF
 
   root_block_device {
     volume_size           = "10"
@@ -50,9 +50,9 @@ resource "aws_instance" "master2" {
             sudo usermod -aG docker ubuntu
             sudo usermod -aG root ubuntu
             sudo systemctl daemon-reload
-            sudo systemctl restart docker           
+            sudo systemctl restart docker
             sudo reboot
-        EOF
+    EOF
   root_block_device {
     volume_size           = "10"
     volume_type           = "gp2"
