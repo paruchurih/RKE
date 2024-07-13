@@ -16,7 +16,7 @@ resource "aws_instance" "master1" {
   }
   user_data = <<-EOF
         #!/bin/bash
-            sudo curl https://get.docker.com | curl bash
+            sudo curl https://get.docker.com | bash
             sudo usermod -aG docker ubuntu
             sudo usermod -aG root ubuntu
             sudo systemctl daemon-reload
@@ -50,7 +50,8 @@ resource "aws_instance" "master2" {
             sudo usermod -aG docker ubuntu
             sudo usermod -aG root ubuntu
             sudo systemctl daemon-reload
-            sudo systemctl restart docker            sudo reboot
+            sudo systemctl restart docker           
+            sudo reboot
         EOF
   root_block_device {
     volume_size           = "10"
