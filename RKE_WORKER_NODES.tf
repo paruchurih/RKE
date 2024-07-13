@@ -67,7 +67,7 @@ resource "aws_instance" "worker03" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.SG.id]
   tags = {
-    name = "worker03"
+    Name = "worker03"
   }
   user_data = <<-EOF
         #!/bin/bash

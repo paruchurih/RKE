@@ -1,0 +1,55 @@
+ssh_key_path: /home/ubuntu/terraform/RKE/K8S-KEY.pem
+cluster_name: RKEcluster
+#kubernetes_version: v1.27.12-rancher1-1
+nodes:
+  - address: 54.92.165.199
+    hostname_override: master1
+    #internal_address: 172.16.22.12
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+  - address: 44.195.59.195
+    hostname_override: master2
+    #internal_address: 172.16.32.37
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+  - address: 3.88.234.249
+    hostname_override: master3
+    #internal_address: 172.16.42.73
+    user: ubuntu
+    role: [controlplane, worker, etcd]
+
+  - address: 18.232.78.159
+    hostname_override: worker01
+    #internal_address: 172.16.42.73
+    user: ubuntu
+    role: [worker]
+  - address: 44.200.7.141
+    hostname_override: worker02
+    #internal_address: 172.16.42.73
+    user: ubuntu
+    role: [worker]
+  - address: 18.208.161.208
+    hostname_override: worker03
+    #internal_address: 172.16.42.73
+    user: ubuntu
+    role: [worker]
+
+authentication:
+    strategy: x509
+    sans:
+      - "rke.cbnnow.online"
+      - "RKE-LB-ee4b878c1ab2692b.elb.us-east-1.amazonaws.com"
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+network:
+  plugin: flannel
+  options:
+    flannel_iface: ens5
+    flannel_backend_type: vxlan
+    flannel_autoscaler_priority_class_name: system-cluster-critical # Available as of RKE v1.2.6+
+    flannel_priority_class_name: system-cluster-critical # Available as of RKE v1.2.6+
+
