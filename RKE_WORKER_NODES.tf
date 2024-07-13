@@ -1,7 +1,7 @@
 resource "aws_instance" "worker01" {
   ami                         = "ami-0261755bbcb8c4a84"
   instance_type               = "t3.medium"
-  key_name                    = "K8S-key"
+  key_name                    = "K8S-KEY"
   subnet_id                   = aws_subnet.publicsubnet1.id
   availability_zone           = "us-east-1a"
   vpc_security_group_ids      = [aws_security_group.SG.id]
@@ -34,7 +34,7 @@ resource "aws_instance" "worker02" {
   availability_zone           = "us-east-1b"
   subnet_id                   = aws_subnet.publicsubnet2.id
   instance_type               = "t3.medium"
-  key_name                    = "K8S-key"
+  key_name                    = "K8S-KEY"
   vpc_security_group_ids      = [aws_security_group.SG.id]
   associate_public_ip_address = true
   tags = {
