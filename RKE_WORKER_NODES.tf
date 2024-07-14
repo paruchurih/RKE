@@ -12,10 +12,10 @@ resource "aws_instance" "worker01" {
   user_data = <<-EOF
         #!/bin/bash
             sudo curl https://get.docker.com | bash
-            sudo -aG docker ubuntu
-            sudo -aG root docker
-            sudo systemctl reload-daemon
-            sudo systemctl reload docker
+            sudo usermod -aG docker ubuntu
+            sudo usermod -aG root ubuntu
+            sudo systemctl daemon-reload
+            sudo systemctl restart docker
             sudo reboot
     EOF
 
