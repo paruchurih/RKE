@@ -1,0 +1,13 @@
+To Install Rancher UI on Docker Host:
+1. Deploy Ubuntu 20.02 t2.medium with 15GB Root Volume
+2. Install Docker Engine on it.
+3. Create a dns name based on your domain name. 
+    Ex: rancher.k8sb27.xyz
+    
+4. docker run -d --restart=unless-stopped --privileged --network host  \
+rancher/rancher:latest --acme-domain rancher.k8sb27.xyz
+
+Wait for 5 min to get the Rancher UI up.
+Run followong command to get passworsd for UI.
+
+docker logs  <rancher-contaner-id>  2>&1 | grep "Bootstrap Password:"
